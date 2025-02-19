@@ -6,3 +6,4 @@ resource "aws_vpc" "csye6225_vpc" {
     Name = var.VPC_name
   }
 }
+;;
