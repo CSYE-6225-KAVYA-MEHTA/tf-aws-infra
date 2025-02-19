@@ -21,3 +21,4 @@ resource "aws_subnet" "private_subnet" {
     Name = "${var.VPC_name}private_subnet${count.index + 1}"
   }
 }
+;;
