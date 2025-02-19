@@ -26,7 +26,7 @@ variable "subnet_count_public" {
 
 variable "CIDRS_Public" {
   description = "Public CIDRS values"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "subnet_count_private" {
