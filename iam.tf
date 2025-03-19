@@ -1,32 +1,4 @@
-# resource "aws_iam_user_policy" "allow_create_role_dev_cli" {
-#   name = "AllowIAMRoleCreationPolicy-dev-cli"
-#   user = "dev-cli"
 
-#   policy = <<EOF
-# {
-#   "Version": "2012-10-17",
-#   "Statement": [
-#     {
-#       "Sid": "AllowIAMRoleCreation",
-#       "Effect": "Allow",
-#       "Action": [
-#         "iam:CreateRole",
-#         "iam:AttachRolePolicy",
-#         "iam:PutRolePolicy",
-#         "iam:GetRole",
-#         "iam:DeleteRole",
-#         "iam:DetachRolePolicy",
-#         "iam:CreateInstanceProfile",
-#         "iam:AddRoleToInstanceProfile",
-#         "iam:RemoveRoleFromInstanceProfile",
-#         "iam:DeleteInstanceProfile"
-#       ],
-#       "Resource": "*"
-#     }
-#   ]
-# }
-# EOF
-# }
 
 resource "aws_iam_role" "ec2_s3_role" {
   name = "ec2_s3_access_role"
