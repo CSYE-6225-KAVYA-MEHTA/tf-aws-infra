@@ -25,8 +25,8 @@ resource "aws_security_group" "app_security_group" {
   }
 
   ingress {
-    from_port   = 3000
-    to_port     = 3000
+    from_port   = 8080
+    to_port     = 8080
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"] # Allow app access from anywhere
   }
@@ -39,3 +39,32 @@ resource "aws_security_group" "app_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
+
+# Database Security Group for RDS
+resource "aws_security_group" "db_security_group" {
+  name        = "db-security-group"
+  description = "Security group for RDS instances"
+  vpc_id      = aws_vpc.csye6225_vpc.id
+
+  # Allow inbound traffic from the application security group to the MySQL port
+  ingress {
+    from_port       = 3306 # MySQL port
+    to_port         = 3306 # MySQL port
+    protocol        = "tcp"
+    security_groups = [aws_security_group.app_security_group.id]
+  }
+
+  # Allow all outbound traffic
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "database-security-group"
+  }
+}
+

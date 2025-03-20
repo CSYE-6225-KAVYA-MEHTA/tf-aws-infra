@@ -1,5 +1,5 @@
 variable "Profile" {
-  description = "profile of aws (dev)"
+  description = "profile of aws (dev/demo)"
   type        = string
 }
 
@@ -8,6 +8,8 @@ variable "Region" {
   description = "region to deploy the resources"
   type        = string
 }
+
+
 
 variable "CIDR_Block" {
   description = "VPC CIDR_Block"
@@ -47,3 +49,4 @@ variable "CIDR_Public_Routes" {
 data "aws_availability_zones" "available" {
   state = "available"
 }
+
