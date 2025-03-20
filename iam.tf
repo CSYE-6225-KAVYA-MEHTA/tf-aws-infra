@@ -1,14 +1,12 @@
-
-
 resource "aws_iam_role" "ec2_s3_role" {
   name = "ec2_s3_access_role"
 
   assume_role_policy = jsonencode({
-    Version   = "2012-10-17",
+    Version = "2012-10-17",
     Statement = [
       {
-        Effect    = "Allow",
-        Action    = "sts:AssumeRole",
+        Effect = "Allow",
+        Action = "sts:AssumeRole",
         Principal = {
           Service = "ec2.amazonaws.com"
         }
@@ -22,12 +20,12 @@ resource "aws_iam_role" "ec2_s3_role" {
 resource "aws_iam_policy" "policy" {
   name        = "test-policy"
   description = "A test policy"
-  policy      = jsonencode({
-    Version   = "2012-10-17",
+  policy = jsonencode({
+    Version = "2012-10-17",
     Statement = [
       {
-        Effect   = "Allow",
-        Action   = [
+        Effect = "Allow",
+        Action = [
           "s3:ListBucket",
           "s3:GetObject",
           "s3:PutObject",

@@ -51,10 +51,10 @@ resource "aws_s3_bucket_lifecycle_configuration" "bucket_lifecycle" {
   rule {
     id     = "transition-to-standard-ia"
     status = "Enabled"
-    
+
     # Add the required filter block
     filter {
-      prefix = ""  # Empty prefix means apply to all objects
+      prefix = "" # Empty prefix means apply to all objects
     }
 
     transition {

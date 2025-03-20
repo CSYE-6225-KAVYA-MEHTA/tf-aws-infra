@@ -5,7 +5,6 @@ resource "aws_instance" "web_app_instance" {
   # Attach the security group
   vpc_security_group_ids = [aws_security_group.app_security_group.id]
 
-  # Comment out IAM instance profile until you have permissions
   iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
   # Make sure the EBS volume is terminated when the instance is terminated
   root_block_device {

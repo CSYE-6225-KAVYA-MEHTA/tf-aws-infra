@@ -11,8 +11,8 @@ resource "random_id" "rds_suffix" {
 
 resource "aws_db_parameter_group" "db_parameter_group" {
   name   = "csye6225-mysql-params-${random_id.rds_suffix.hex}"
-  family = "mysql8.0" # Keep as 
-  
+  family = "mysql8.0"
+
   parameter {
     name  = "character_set_server"
     value = "utf8"
@@ -28,7 +28,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 resource "aws_db_instance" "csye6225" {
   identifier             = "csye6225"
   engine                 = "mysql"
-  engine_version         = "8.0" # Explicitly set to
+  engine_version         = "8.0"         # Explicitly set to 8.0
   instance_class         = "db.t3.micro" # Changed from t2.micro to t3.micro for compatibility
   username               = var.db_username
   password               = var.db_password
