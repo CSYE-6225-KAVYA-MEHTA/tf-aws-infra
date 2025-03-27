@@ -50,3 +50,20 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
+variable "cw_agent_role_name" {
+  description = "The name of the IAM role for the CloudWatch Agent"
+  type        = string
+  default     = "CloudWatchAgentRole"
+}
+
+variable "cw_agent_policy_name" {
+  description = "The name of the IAM policy for the CloudWatch Agent"
+  type        = string
+  default     = "CloudWatchAgentPolicy"
+}
+
+variable "cw_instance_profile_name" {
+  description = "The name of the IAM instance profile for the CloudWatch Agent"
+  type        = string
+  default     = "CloudWatchAgentInstanceProfile"
+}
