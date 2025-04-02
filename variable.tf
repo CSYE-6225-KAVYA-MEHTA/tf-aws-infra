@@ -67,3 +67,39 @@ variable "cw_instance_profile_name" {
   type        = string
   default     = "CloudWatchAgentInstanceProfile"
 }
+
+
+
+variable "route53_zone_id" {
+  description = "Route53 Zone ID for the domain"
+  type        = string
+}
+
+variable "domain_name" {
+  description = "Domain name for the application (e.g., dev.example.com)"
+  type        = string
+}
+
+variable "asg_min_size" {
+  description = "Minimum size of the Auto Scaling Group"
+  type        = number
+  default     = 3
+}
+
+variable "asg_max_size" {
+  description = "Maximum size of the Auto Scaling Group"
+  type        = number
+  default     = 5
+}
+
+variable "asg_desired_capacity" {
+  description = "Desired capacity of the Auto Scaling Group"
+  type        = number
+  default     = 1
+}
+
+variable "asg_cooldown" {
+  description = "Cooldown period (in seconds) for the Auto Scaling Group"
+  type        = number
+  default     = 60
+}
