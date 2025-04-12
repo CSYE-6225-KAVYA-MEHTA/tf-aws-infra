@@ -2,7 +2,7 @@ resource "aws_launch_template" "csye6225_asg" {
   name_prefix   = "csye6225_asg"
   image_id      = var.AMI
   instance_type = var.INSTANCE_TYPE
-  key_name="csye6225-key"
+  key_name      = "csye6225-key"
 
   network_interfaces {
     associate_public_ip_address = true
@@ -15,15 +15,27 @@ resource "aws_launch_template" "csye6225_asg" {
 
   user_data = base64encode(<<-EOF
     #!/bin/bash
+
+    sudo apt-get update -y
+    sudo snap install aws-cli --classic
+    sudo apt get install -y jq
     # Remove any existing .env file in /opt/csye6225
     rm -f /opt/csye6225/.env
 
+    
     # Set environment variables for database configuration
     echo "DB_HOST=${aws_db_instance.csye6225.address}" >> /opt/csye6225/.env
     echo "DB_PORT=${aws_db_instance.csye6225.port}" >> /opt/csye6225/.env
     echo "DB_DATABASE=${aws_db_instance.csye6225.db_name}" >> /opt/csye6225/.env
     echo "DB_USERNAME=${var.db_username}" >> /opt/csye6225/.env
-    echo "DB_PASSWORD=${var.db_password}" >> /opt/csye6225/.env
+
+
+
+
+    # Retrieve the database password from AWS Secrets Manager
+    DB_PASSWORD=$(aws secretsmanager get-secret-value --secret-id ${var.Secrets_Name} --query 'SecretString' --output text --region ${var.Region} | jq -r '.password')
+    echo "DB_PASSWORD=$DB_PASSWORD" >> /opt/csye6225/.env
+
     echo "SERVER_PORT=8080" >> /opt/csye6225/.env
     echo "S3_BUCKET=${aws_s3_bucket.webapp_bucket.id}" >> /opt/csye6225/.env
     echo "AWS_REGION=${var.Region}" >> /opt/csye6225/.env

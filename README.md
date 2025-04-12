@@ -37,3 +37,10 @@ This repository contains Terraform configurations to set up a complete AWS netwo
 6. To destroy the infrastructure
 
    terraform destroy
+
+aws acm import-certificate \
+--certificate fileb:///Users/kavya/SSL/demo_kavyamehta_me.crt\
+--private-key fileb:///Users/kavya/SSL/mydomain.key \
+--certificate-chain fileb:///Users/kavya/SSL/demo_kavyamehta_me.ca-bundle \
+ --profile demo \
+--region us-east-1

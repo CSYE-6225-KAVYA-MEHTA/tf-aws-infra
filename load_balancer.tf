@@ -23,10 +23,26 @@ resource "aws_lb_target_group" "app_target_group" {
   }
 }
 
-resource "aws_lb_listener" "app_listener" {
+# resource "aws_lb_listener" "app_listener" {
+#   load_balancer_arn = aws_lb.app_alb.arn
+#   port              = "80"
+#   protocol          = "HTTP"
+
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.app_target_group.arn
+#   }
+# }
+
+
+resource "aws_lb_listener" "app_listener_https" {
   load_balancer_arn = aws_lb.app_alb.arn
-  port              = "80"
-  protocol          = "HTTP"
+  port              = "443"
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+
+  # Use the dev certificate ARN if profile is "dev", otherwise use the demo certificate ARN.
+  certificate_arn = var.Profile == "dev" ? var.dev_certificate_arn : var.demo_certificate_arn
 
   default_action {
     type             = "forward"

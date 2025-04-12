@@ -50,6 +50,38 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
+
+variable "AMI" {
+  description = "Machine image ID"
+  type        = string
+}
+
+variable "INSTANCE_TYPE" {
+  description = "Type of EC2 instance"
+  type        = string
+}
+
+variable "VOLUME_SIZE" {
+  description = "EBS volume size (in GB)"
+  type        = number
+}
+
+variable "db_username" {
+  description = "Database username"
+  type        = string
+}
+
+variable "db_password" {
+  description = "Database password"
+  type        = string
+  sensitive   = true
+}
+
+variable "db_name" {
+  description = "Database name"
+  type        = string
+}
+
 variable "cw_agent_role_name" {
   description = "The name of the IAM role for the CloudWatch Agent"
   type        = string
@@ -103,3 +135,25 @@ variable "asg_cooldown" {
   type        = number
   default     = 60
 }
+
+
+variable "Secrets_Name" {
+  description = "Name of Secret"
+  type        = string
+}
+
+
+variable "demo_certificate_arn" {
+  description = "ARN for demo certificate"
+  type        = string
+}
+
+variable "dev_certificate_arn" {
+  description = "ARN for dev certificate"
+  type        = string
+}
+
+# variable "acm_certificate_arn" {
+#   description = "ARN of the SSL certificate to use for the HTTPS listener"
+#   type        = string
+# }
