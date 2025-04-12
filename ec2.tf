@@ -74,14 +74,6 @@
 
 #     # Restart the web application service (assumes webapp is managed by systemd)
 #     systemctl daemon-reload
-#     systemctl enable amazon-cloudwatch-agent
-#     systemctl restart webapp.service
-
-#     sleep 5
-
-#     # Restart the web application service (assumes webapp is managed by systemd)
-#     systemctl daemon-reload
-#     sleep 5
 #     systemctl restart webapp.service
 
 #   EOF
@@ -93,36 +85,36 @@
 #   }
 # }
 
-variable "AMI" {
-  description = "Machine image ID"
-  type        = string
-}
+# variable "AMI" {
+#   description = "Machine image ID"
+#   type        = string
+# }
 
-variable "INSTANCE_TYPE" {
-  description = "Type of EC2 instance"
-  type        = string
-}
+# variable "INSTANCE_TYPE" {
+#   description = "Type of EC2 instance"
+#   type        = string
+# }
 
-variable "VOLUME_SIZE" {
-  description = "EBS volume size (in GB)"
-  type        = number
-}
+# variable "VOLUME_SIZE" {
+#   description = "EBS volume size (in GB)"
+#   type        = number
+# }
 
-variable "db_username" {
-  description = "Database username"
-  type        = string
-}
+# variable "db_username" {
+#   description = "Database username"
+#   type        = string
+# }
 
-variable "db_password" {
-  description = "Database password"
-  type        = string
-  sensitive   = true
-}
+# variable "db_password" {
+#   description = "Database password"
+#   type        = string
+#   sensitive   = true
+# }
 
-variable "db_name" {
-  description = "Database name"
-  type        = string
-}
+# variable "db_name" {
+#   description = "Database name"
+#   type        = string
+# }
 
 # output "instance_public_ip" {
 #   description = "Public IP of the EC2 instance"

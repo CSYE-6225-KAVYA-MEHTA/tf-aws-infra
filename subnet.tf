@@ -16,7 +16,6 @@ resource "aws_subnet" "private_subnet" {
   cidr_block        = var.CIDRS_Private[count.index]
   availability_zone = data.aws_availability_zones.available.names[count.index % length(data.aws_availability_zones.available.names)]
 
-
   tags = {
     Name = "${var.VPC_name}private_subnet${count.index + 1}"
   }

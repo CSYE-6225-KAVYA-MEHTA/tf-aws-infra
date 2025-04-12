@@ -7,7 +7,12 @@ resource "aws_s3_bucket" "webapp_bucket" {
   tags = {
     Name = "webapp-bucket-${random_uuid.bucket_name.result}"
   }
+
+
 }
+
+
+
 
 # Enable default encryption for the bucket
 resource "aws_s3_bucket_server_side_encryption_configuration" "bucket_encryption" {
@@ -15,7 +20,9 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "bucket_encryption
 
   rule {
     apply_server_side_encryption_by_default {
-      sse_algorithm = "AES256"
+      # sse_algorithm = "AES256"
+      kms_master_key_id = aws_kms_key.s3_kms_key.arn
+      sse_algorithm     = "aws:kms"
     }
   }
 }

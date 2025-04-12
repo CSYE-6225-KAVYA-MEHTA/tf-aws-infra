@@ -32,9 +32,9 @@ resource "aws_security_group" "app_security_group" {
   vpc_id = aws_vpc.csye6225_vpc.id
 
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
     security_groups = [aws_security_group.lb_security_group.id]
   }
 
